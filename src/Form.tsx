@@ -1,18 +1,20 @@
+/** @file form 组件代码 */
+
 import * as React from 'react';
-import type {
-  Store,
-  FormInstance,
-  FieldData,
-  ValidateMessages,
-  Callbacks,
-  InternalFormInstance,
-} from './interface';
-import useForm from './useForm';
 import FieldContext, { HOOK_MARK } from './FieldContext';
 import type { FormContextProps } from './FormContext';
 import FormContext from './FormContext';
-import { isSimilar } from './utils/valueUtil';
 import ListContext from './ListContext';
+import type {
+  Callbacks,
+  FieldData,
+  FormInstance,
+  InternalFormInstance,
+  Store,
+  ValidateMessages,
+} from './interface';
+import useForm from './useForm';
+import { isSimilar } from './utils/valueUtil';
 
 type BaseFormProps = Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit' | 'children'>;
 
@@ -35,6 +37,7 @@ export interface FormProps<Values = any> extends BaseFormProps {
   preserve?: boolean;
 }
 
+// 透传 ref, ref 类型为 FormInstance
 const Form: React.ForwardRefRenderFunction<FormInstance, FormProps> = (
   {
     name,
@@ -54,6 +57,7 @@ const Form: React.ForwardRefRenderFunction<FormInstance, FormProps> = (
   }: FormProps,
   ref,
 ) => {
+  // 获取 formContext
   const formContext: FormContextProps = React.useContext(FormContext);
 
   // We customize handle event since Context will makes all the consumer re-render:

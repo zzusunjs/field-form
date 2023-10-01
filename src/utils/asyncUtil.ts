@@ -4,6 +4,7 @@ import type { FieldError } from '../interface';
  * 相当于 promise.all 但是为啥不用 promise.all 呢 ？
  * @param promiseList
  * @returns
+ * @reference https://wangdoc.com/javascript/async/promise
  */
 export function allPromiseFinish(promiseList: Promise<FieldError>[]): Promise<FieldError[]> {
   // promiseList 中是否有 error 的
